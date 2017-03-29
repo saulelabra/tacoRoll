@@ -5,7 +5,7 @@ PImage splashS, cargando, menu, ajustes, modojuego, pantsingle, pantmult, pantin
 void setup()
 {
   size (800,600);
-  num_pantalla = 4;
+  num_pantalla = 6;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -71,13 +71,37 @@ void pantalla_menu()//3
   background(0,255,0);
   image(menu, 0, 0);
   
-  //fill(255,0,0,50);
-  //rect(20, 20, 40, 50);
+  fill(255,0,0,50);
+  rect(280, 400, 245, 110);//jugar
+  
+  fill(255,0,0,50);
+  rect(590, 380, 180, 160);//¿Cómo jugar?
+  
+  fill(255,0,0,50);
+  rect(80, 435, 100, 75);//Salir
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón salir
+  { 
+    if(mouseX>80 && mouseX<180 && mouseY>435 && mouseY<510)
+      exit();//sale del juego
+  }
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón ¿cómo jugar?
+  { 
+    if(mouseX>590 && mouseX<770 && mouseY>380 && mouseY<540)
+      num_pantalla = 5;//carga pantalla de ¿Cómo jugar?
+  }
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón jugar
+  { 
+    if(mouseX>280 && mouseX<525 && mouseY>400 && mouseY<510)
+      num_pantalla = 6;//carga menú de modo de juego
+  }
   
   if (mousePressed && (mouseButton == LEFT) )//Define área de botón de ajustes
   { 
     if(mouseX>20 && mouseX<60 && mouseY>20 && mouseY<70)
-      num_pantalla = 4;
+      num_pantalla = 4;//carga ajustes
   }
 }
 
@@ -98,11 +122,50 @@ void pantalla_ajustes()//4
 
 void pantalla_instrucciones()//5
 {
+  image(pantinst,0,0);
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón regresar a menú
+  { 
+    if(mouseX>30 && mouseX<75 && mouseY>30 && mouseY<80)
+    {
+      num_pantalla = 3;
+    }
+  }
 }
 
 void pantalla_menu_jugar()//6
 {
   image(modojuego,0,0);
+  
+  fill(255,0,0,50);
+  rect(70, 210, 325, 340);//singleplayer
+  
+  fill(255,0,0,50);
+  rect(435, 40, 330, 340);//multileplayer
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón multijugador
+  { 
+    if(mouseX>435 && mouseX<765 && mouseY>40 && mouseY<380)
+    {
+      num_pantalla = 8;//cargamultijugador
+    }
+  }
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón partida rápida
+  { 
+    if(mouseX>70 && mouseX<395 && mouseY>210 && mouseY<550)
+    {
+      num_pantalla = 7;//carga partida rápida
+    }
+  }
+  
+  if (mousePressed && (mouseButton == LEFT) )//Define área de botón regresar a menú
+  { 
+    if(mouseX>30 && mouseX<75 && mouseY>30 && mouseY<80)
+    {
+      num_pantalla = 3;
+    }
+  }
 }
 
 void pantalla_partida_rapida()//7
