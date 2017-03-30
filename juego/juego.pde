@@ -1,11 +1,18 @@
-int num_pantalla;
+import com.leapmotion.leap.processing.*;
+import com.leapmotion.leap.*;
+import com.leapmotion.leap.processing.LeapMotion;
 
+LeapMotion leapMotion;
+
+int num_pantalla;
+float x_s,y_s;
 PImage splashS, cargando, menu, ajustes, modojuego, pantsingle, pantmult, pantinst;
 
 void setup()
 {
   size (800,600);
-  num_pantalla = 6;
+  leapMotion = new LeapMotion(this);
+  num_pantalla = 1;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -18,7 +25,41 @@ void setup()
 
 void draw()
 {
-    switch(num_pantalla)
+  Controller controller = leapMotion.controller();
+  controller.enableGesture(Gesture.Type.TYPE_SCREEN_TAP);
+  
+   if (controller.isConnected())
+  {
+    Frame frame = controller.frame();
+    Hand mano = frame.hands().get(0);
+      
+      if(mano.isRight())
+      {
+        
+        //Para traerse solo el dedo índice de esta mano:
+        Finger indice = mano.fingers().fingerType(Finger.Type.TYPE_INDEX).get(0);
+        Vector pos = indice.tipPosition();
+           
+           float x=pos.getX();
+           float y=pos.getY();
+           x_s = leapMotion.leapToSketchX(x);
+           y_s = leapMotion.leapToSketchY(y);
+           
+            for(Gesture gesture: frame.gestures())
+            {
+               switch(gesture.type())
+               {
+                 case TYPE_SCREEN_TAP:
+                   num_pantalla = 4;
+                   break;
+               }
+            }  
+      }
+    }
+ 
+  
+  
+  switch(num_pantalla)
     {
       case 1:
               pantalla_splashscreen();
@@ -45,6 +86,11 @@ void draw()
               pantalla_multijugador();
               break;       
     }
+     strokeWeight(20);
+     stroke(255,0,0);
+     point(x_s,y_s);
+     strokeWeight(1);
+     stroke(255,0,0);
 }
 
 void pantalla_splashscreen()//1
