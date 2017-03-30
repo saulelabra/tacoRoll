@@ -50,32 +50,43 @@ void draw()
                switch(gesture.type())
                {
                  case TYPE_SCREEN_TAP:
-                       if(num_pantalla == 3)
+                       if(num_pantalla == 3)//menú principal
                        {
                          if(x_s>80 && x_s<180 && y_s>435 && y_s<510)
-                         exit();//sale del juego
+                           exit();//sale del juego
+                         
                          if(x_s>590 && x_s<770 && y_s>380 && y_s<540)
-                         num_pantalla = 5;//Carga ¿Como jugar?
+                           num_pantalla = 5;//Carga ¿Como jugar?
+                         
                          if(x_s>280 && x_s<525 && y_s>400 && y_s<510)
-                         num_pantalla = 6;//Carga los modos de juego
+                           num_pantalla = 6;//Carga los modos de juego
+                         
                          if(x_s>0 && x_s<75 && y_s>0 && y_s<80)
-                         {
-                         num_pantalla = 4;}//Carga ajustes                     
+                           num_pantalla = 4;//Carga ajustes               
                        }
-                       if(num_pantalla == 4)
+                       
+                       if(num_pantalla == 4)//pantalla de ajustes
                        {
-                        if(x_s>30 && x_s<75 && y_s>30 && y_s<80)
-                        num_pantalla = 3;
+                        if(x_s>30 && x_s<75 && y_s>30 && y_s<80)//botón de regreso
+                          num_pantalla = 3;
                        }
-                       if(num_pantalla == 5)
+                       
+                       if(num_pantalla == 5)//pantalla de instrucciones
                        {
-                         if(x_s>30 && x_s<75 && y_s>30 && y_s<80)
-                         num_pantalla = 3;
+                         if(x_s>30 && x_s<75 && y_s>30 && y_s<80)//botón de regreso
+                           num_pantalla = 3;
                        }
-                       if(num_pantalla == 6)
+                       
+                       if(num_pantalla == 6)//pantalla de modo de juego
                        {
-                         if(x_s>30 && x_s<75 && y_s>30 && y_s<80)
-                         num_pantalla = 3;
+                         if(x_s>30 && x_s<75 && y_s>30 && y_s<80)//botón de regreso
+                           num_pantalla = 3;
+                         
+                         if(x_s>435 && x_s<765 && y_s>40 && y_s<380)//botón multijugador
+                           num_pantalla = 8;
+                           
+                         if(x_s>70 && x_s<395 && y_s>210 && y_s<550)
+                           num_pantalla = 7;
                        }
                    break;
                }
@@ -180,6 +191,8 @@ void pantalla_menu()//3
    rect(20,20,40,50);//botón ajustes
 }
 
+
+
 void pantalla_ajustes()//4
 {
   image(ajustes, 0, 0);
@@ -195,6 +208,9 @@ void pantalla_ajustes()//4
   }
 }
 
+
+
+
 void pantalla_instrucciones()//5
 {
   image(pantinst,0,0);
@@ -207,6 +223,9 @@ void pantalla_instrucciones()//5
     }
   }
 }
+
+
+
 
 void pantalla_menu_jugar()//6
 {
