@@ -6,13 +6,13 @@ LeapMotion leapMotion;
 
 int num_pantalla;
 float x_s,y_s;
-PImage splashS, cargando, menu, ajustes, modojuego, pantsingle, pantmult, pantinst;
+PImage splashS, cargando, menu, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
 
 void setup()
 {
   size (800,600);
   leapMotion = new LeapMotion(this);
-  num_pantalla = 3;
+  num_pantalla = 8;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -21,6 +21,9 @@ void setup()
   pantsingle = loadImage("pantsingle.png");
   pantmult = loadImage("pantmult.png");
   pantinst = loadImage("pantinst.png");
+  check = loadImage("check.png");
+  
+  
 }
 
 void draw()
@@ -128,6 +131,8 @@ void draw()
      point(x_s,y_s);
      strokeWeight(1);
      stroke(255,0,0);
+     
+     image(check,740,210);
 
 }
 
