@@ -4,7 +4,7 @@ import com.leapmotion.leap.processing.LeapMotion;
 
 LeapMotion leapMotion;
 
-int num_pantalla;
+int num_pantalla, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9;
 float x_s,y_s;
 PImage splashS, cargando, menu, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
 
@@ -132,7 +132,7 @@ void draw()
      strokeWeight(1);
      stroke(255,0,0);
      
-     image(check,740,210);
+
 
 }
 
@@ -275,4 +275,64 @@ void pantalla_partida_rapida()//7
 void pantalla_multijugador()//8
 {
   image(pantmult,0,0);
+  if(flag1==1)
+  image(check,735,195);
+  if(flag2==1)
+  image(check, 735, 232);
+  if(flag3==1)
+  image(check,735,268);
+  if(flag4==1)
+  image(check,735,306);
+  if(flag5==1)
+  image(check,735,353);
+  if(flag6==1)
+  image(check,735,390);
+  if(flag7==1)
+  image(check,735,432);
+  if(flag8==1)
+  image(check,735,470);
+  if(flag9==1)
+  image(pantmult,0,0);
+  
+  
+}
+
+void keyPressed() {
+  if (num_pantalla==8)
+  {
+    if (key == '1')
+    {
+      flag1 = 1;
+    }
+    if (key == '2')
+    {
+       flag2 = 1;
+    }
+    if (key == '3')
+    {
+       flag3 = 1;
+    }
+    if (key == '4')
+    {
+       flag4 = 1;
+    }
+    if (key == '5')
+    {
+       flag5 = 1;
+    }
+    if (key == '6')
+    {
+       flag6 = 1;
+    }
+    if (key == '7')
+    {
+       flag7 = 1;
+    }
+    if (key == '8')
+    {
+       flag8 = 1;
+    }
+    if (key == '9')
+       flag9 = 1;
+  }
 }
