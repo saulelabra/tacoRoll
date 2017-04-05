@@ -1,3 +1,4 @@
+
 import com.leapmotion.leap.processing.*;
 import com.leapmotion.leap.*;
 import com.leapmotion.leap.processing.LeapMotion;
@@ -12,7 +13,7 @@ void setup()
 {
   size (800,600);
   leapMotion = new LeapMotion(this);
-  num_pantalla = 8;
+  num_pantalla = 1;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -34,25 +35,20 @@ void draw()
    if (controller.isConnected())
   {
     Frame frame = controller.frame();
-    Hand mano = frame.hands().get(0);
+
       
-      if(mano.isRight())
+      for(Hand hand : frame.hands())
       {
         
         //Para traerse solo el dedo índice de esta mano:
-        Finger indice = mano.fingers().fingerType(Finger.Type.TYPE_INDEX).get(0);
-        Vector pos = indice.tipPosition();
+        Vector pos = hand.palmPosition();
            
            float x=pos.getX();
            float y=pos.getY();
            x_s = leapMotion.leapToSketchX(x);
            y_s = leapMotion.leapToSketchY(y);
-           
-            for(Gesture gesture: frame.gestures())
-            {
-               switch(gesture.type())
-               {
-                 case TYPE_SCREEN_TAP:
+           if(hand.grabStrength() > 0.7)
+           {
                        if(num_pantalla == 3)//menú principal
                        {
                          if(x_s>80 && x_s<180 && y_s>435 && y_s<510)
@@ -93,7 +89,7 @@ void draw()
                        }
                    break;
                }
-            }  
+             
       }
     }
  
@@ -131,6 +127,7 @@ void draw()
      point(x_s,y_s);
      strokeWeight(1);
      stroke(255,0,0);
+     rect(0,0,70,70);
      
 
 
