@@ -55,25 +55,25 @@ void draw()
        if(hand.grabStrength() > 0.7)
        {
          if(x_s>250 && x_s<305 && y_s>35 && y_s<95)
-           exit();//sale del juego
+           num_pantalla = 7;//partida rápida
          
          if(x_s>705 && x_s<770 && y_s>35 && y_s<95)
-           num_pantalla = 5;//Carga ¿Como jugar?
+           exit();
          
          if(x_s>600 && x_s<665 && y_s>35 && y_s<95)
-           num_pantalla = 3;//Carga el menu
+           num_pantalla = 4;//Carga ajustes
          
          if(x_s>30 && x_s<95 && y_s>35 && y_s<95)
-           num_pantalla = 4;//Carga ajustes               
+           /*num_pantalla = 4;*///Carga pausa            
 
          if(x_s>140 && x_s<205 && y_s>35 && y_s<95)//botón de regreso
           num_pantalla = pantalla_ant;
          
-         if(x_s>490 && x_s<555 && y_s>35 && y_s<95)//botón multijugador
-           num_pantalla = 8;
+         if(x_s>490 && x_s<555 && y_s>35 && y_s<95)//botón instrucciones
+           num_pantalla = 5;
            
-         if(x_s>375 && x_s<440 && y_s>35 && y_s<95) //botón un jugador
-           num_pantalla = 7;
+         if(x_s>375 && x_s<440 && y_s>35 && y_s<95) //botón multijugador
+           num_pantalla = 8;
                    
          break;
        }     
@@ -197,8 +197,8 @@ void pantalla_cargando()//2
 void pantalla_menu()//3
 {
   pantalla_ant = 3;
-  background(0,255,0);
-  image(menu, 0, 0);
+  background(#FFE203);
+  image(menu, 0, 0, 800, 600);
   image(menu_sup_menu, 0, 0);
   
   /*fill(255,0,0,50);
@@ -237,6 +237,19 @@ void pantalla_partida_rapida()//7
   
   image(pantsingle,0,0);
   image(menu_sup_unJugador, 0, 0);
+  
+  Taco [] ordenes;//creamos las ordenes de tacos
+  ordenes = new Taco [5];
+  
+  ordenes[0].pastor = true;
+  
+  ordenes[1].carnitas = true;
+  
+  ordenes[2].queso = true;
+  
+  Taco entrega;
+  
+  
 }
 
 void pantalla_multijugador()//8
