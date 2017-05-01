@@ -33,7 +33,7 @@ boolean salsaA = false;
 
 boolean jugando = false;
 
-PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa;
+PImage carnePastor, tortillas, carnitas, carneBistec, queso;
 
 void setup()
 {
@@ -60,9 +60,6 @@ void setup()
   carnitas = loadImage("carnitas.png");
   carneBistec = loadImage("bistec.png");
   queso = loadImage("queso.png");
-  verdura = loadImage("verdura.png");
-  aguacate = loadImage("aguacate_picado.png");
-  salsa = loadImage("salsa.png");
 }
 
 void draw()
@@ -120,9 +117,6 @@ void draw()
               bistecIn = false;
               pastorIn = false;
               quesoIn = false;
-              verdurasIn = false;
-              aguacateIn = false;
-              salsaIn = false;
             }
             
             jugando = true;
@@ -157,10 +151,7 @@ void draw()
               carnitasIn = false;
               bistecIn = false;
               pastorIn = false;
-              quesoIn = false;
-              verdurasIn = false;
-              aguacateIn = false;
-              salsaIn = false;
+              quesoIn = false;    
             }
             
             jugando = true;
@@ -191,11 +182,6 @@ void draw()
               imageMode(CENTER);
               image(carnitas, 410, 365, 80, 80);
               imageMode(CORNER);
-              if(tortillasIn == false)
-              {
-                carnitasIn = false;
-                carne = false;
-              }
             } else {
               carnitasIn = false;
               centrado = false;
@@ -210,10 +196,7 @@ void draw()
               carnitasIn = false;
               bistecIn = false;
               pastorIn = false;
-              quesoIn = false;
-              verdurasIn = false;
-              aguacateIn = false;
-              salsaIn = false;
+              quesoIn = false;    
             }
             
             jugando = true;
@@ -244,11 +227,6 @@ void draw()
               imageMode(CENTER);
               image(carneBistec, 410, 365, 80, 80);
               imageMode(CORNER);
-              if(tortillasIn == false)
-              {
-                bistecIn = false;
-                carne = false;
-              }
             } else {
               bistecIn = false;
               centrado = false;
@@ -263,10 +241,7 @@ void draw()
               carnitasIn = false;
               bistecIn = false;
               pastorIn = false;
-              quesoIn = false;
-              verdurasIn = false;
-              aguacateIn = false;
-              salsaIn = false;
+              quesoIn = false;    
             }
             
             jugando = true;
@@ -297,11 +272,6 @@ void draw()
               imageMode(CENTER);
               image(carnePastor, 410, 365, 80, 80);
               imageMode(CORNER);
-              if(tortillasIn == false)
-              {
-                pastorIn = false;
-                carne = false;
-              }
             } else {
               pastorIn = false;
               centrado = false;
@@ -316,10 +286,7 @@ void draw()
               carnitasIn = false;
               bistecIn = false;
               pastorIn = false;
-              quesoIn = false;
-              verdurasIn = false;
-              aguacateIn = false;
-              salsaIn = false;
+              quesoIn = false;    
             }
             
             jugando = true;
@@ -350,256 +317,10 @@ void draw()
               imageMode(CENTER);
               image(queso, 410, 365, 80, 80);
               imageMode(CORNER);
-              
-              if(tortillasIn == false)
-              {
-                quesoIn = false;
-                carne = false;
-              }
             } else {
               quesoIn = false;
               centrado = false;
               carne = false;
-            }
-          }
-          
-          if (x_s > 690 && x_s < 790 && y_s > 270 && y_s < 355 || verduraA == true)//area de verdura
-          {
-            jugando = true;
-            verduraA = true;
-            background (255);
-            image(pantsingle, 0, 170, 800, 370);
-            image(menu_sup_unJugador, 0, 0);
-            
-            if(tortillasIn == true)
-            {
-              imageMode(CENTER);
-              image(tortillas, 410, 365, 100, 100);
-              imageMode(CORNER);
-            }
-            
-            if(carne == true)
-            {
-              if(carnitasIn == true)
-              {
-                imageMode(CENTER);
-                image(carnitas, 410, 365, 80, 80);
-                imageMode(CORNER);
-              }else{
-                if(bistecIn == true)
-                {
-                  imageMode(CENTER);
-                  image(carneBistec, 410, 365, 80, 80);
-                  imageMode(CORNER);
-                }else{
-                  if(pastorIn == true)
-                  {
-                    imageMode(CENTER);
-                    image(carnePastor, 410, 365, 80, 80);
-                    imageMode(CORNER);
-                  }else{
-                    if(quesoIn == true)
-                    {
-                      imageMode(CENTER);
-                      image(queso, 410, 365, 80, 80);
-                      imageMode(CORNER);
-                    }
-                  }
-                }
-              }
-            }
-            
-            if(aguacateIn == true)
-            {
-              imageMode(CENTER);
-              image(aguacate, 410, 365, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if(salsaIn == true)
-            {
-              imageMode(CENTER);
-              image(salsa, 410, 365, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if(centrado == false)
-            {
-              imageMode(CENTER);
-              image(verdura, x_s, y_s, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if (x_s > 185 && x_s < 625 && y_s > 300 && y_s < 470)// entra al comal
-            {
-              centrado = true;
-              verdurasIn = true;
-              imageMode(CENTER);
-              image(verdura, 410, 365, 60, 60);
-              imageMode(CORNER);
-            } else {
-              verdurasIn = false;
-              centrado = false;
-            }
-          }
-          
-          if (x_s > 710 && x_s < 780 && y_s > 366 && y_s < 446 || aguacateA == true)//area de aguacate
-          {
-            jugando = true;
-            aguacateA = true;
-            background (255);
-            image(pantsingle, 0, 170, 800, 370);
-            image(menu_sup_unJugador, 0, 0);
-            
-            if(tortillasIn == true)
-            {
-              imageMode(CENTER);
-              image(tortillas, 410, 365, 100, 100);
-              imageMode(CORNER);
-            }
-            
-            if(carne == true)
-            {
-              if(carnitasIn == true)
-              {
-                imageMode(CENTER);
-                image(carnitas, 410, 365, 80, 80);
-                imageMode(CORNER);
-              }else{
-                if(bistecIn == true)
-                {
-                  imageMode(CENTER);
-                  image(carneBistec, 410, 365, 80, 80);
-                  imageMode(CORNER);
-                }else{
-                  if(pastorIn == true)
-                  {
-                    imageMode(CENTER);
-                    image(carnePastor, 410, 365, 80, 80);
-                    imageMode(CORNER);
-                  }else{
-                    if(quesoIn == true)
-                    {
-                      imageMode(CENTER);
-                      image(queso, 410, 365, 80, 80);
-                      imageMode(CORNER);
-                    }
-                  }
-                }
-              }
-            }
-            
-            if(verdurasIn == true)
-            {
-              imageMode(CENTER);
-              image(verdura, 410, 365, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if(salsaIn == true)
-            {
-              imageMode(CENTER);
-              image(salsa, 410, 365, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if(centrado == false)
-            {
-              imageMode(CENTER);
-              image(aguacate, x_s, y_s, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if (x_s > 185 && x_s < 625 && y_s > 300 && y_s < 470)// entra al comal
-            {
-              centrado = true;
-              aguacateIn = true;
-              imageMode(CENTER);
-              image(aguacate, 410, 365, 60, 60);
-              imageMode(CORNER);
-            } else {
-              aguacateIn = false;
-              centrado = false;
-            }
-          }
-          
-          if (x_s > 695 && x_s < 795 && y_s > 460 && y_s < 535 || salsaA == true)//area de salsas
-          {
-            jugando = true;
-            salsaA = true;
-            background (255);
-            image(pantsingle, 0, 170, 800, 370);
-            image(menu_sup_unJugador, 0, 0);
-            
-            if(tortillasIn == true)
-            {
-              imageMode(CENTER);
-              image(tortillas, 410, 365, 100, 100);
-              imageMode(CORNER);
-            }
-            
-            if(carne == true)
-            {
-              if(carnitasIn == true)
-              {
-                imageMode(CENTER);
-                image(carnitas, 410, 365, 80, 80);
-                imageMode(CORNER);
-              }else{
-                if(bistecIn == true)
-                {
-                  imageMode(CENTER);
-                  image(carneBistec, 410, 365, 80, 80);
-                  imageMode(CORNER);
-                }else{
-                  if(pastorIn == true)
-                  {
-                    imageMode(CENTER);
-                    image(carnePastor, 410, 365, 80, 80);
-                    imageMode(CORNER);
-                  }else{
-                    if(quesoIn == true)
-                    {
-                      imageMode(CENTER);
-                      image(queso, 410, 365, 80, 80);
-                      imageMode(CORNER);
-                    }
-                  }
-                }
-              }
-            }
-            
-            if(aguacateIn == true)
-            {
-              imageMode(CENTER);
-              image(aguacate, 410, 365, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if(verdurasIn == true)
-            {
-              imageMode(CENTER);
-              image(verdura, 410, 365, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if(centrado == false)
-            {
-              imageMode(CENTER);
-              image(salsa, x_s, y_s, 60, 60);
-              imageMode(CORNER);
-            }
-            
-            if (x_s > 185 && x_s < 625 && y_s > 300 && y_s < 470)// entra al comal
-            {
-              centrado = true;
-              salsaIn = true;
-              imageMode(CENTER);
-              image(salsa, 410, 365, 60, 60);
-              imageMode(CORNER);
-            } else {
-              salsaIn = false;
-              centrado = false;
             }
           }
         }
@@ -819,52 +540,9 @@ void pantalla_partida_rapida()//7
       image(queso, 410, 365, 80, 80);
       imageMode(CORNER);
     }
-    
-    if(verdurasIn == true)
-    {
-      if(carne == true)
-      {
-        if(aguacateIn == true)
-        {
-          imageMode(CENTER);
-          image(aguacate, 410, 365, 60, 60);
-          imageMode(CORNER);
-        }
-        
-        imageMode(CENTER);
-        image(verdura, 410, 365, 60, 60);
-        imageMode(CORNER);
-      }else{
-        verdurasIn = false;
-      }
-    }
-    
-    if(aguacateIn == true && verdurasIn == false)
-    {
-      if(carne == true)
-      {
-        imageMode(CENTER);
-        image(aguacate, 410, 365, 60, 60);
-        imageMode(CORNER);
-      }else{
-        aguacateIn = false;
-      }
-    }
-    
-    if(salsaIn == true)
-    {
-      if(carne == true)
-      {
-        imageMode(CENTER);
-        image(salsa, 410, 365, 60, 60);
-        imageMode(CORNER);
-      }else{
-        salsaIn = false;
-      }
-    }
   }
   
-  /*stroke(255,0,0);
+  stroke(255,0,0);
   
   rect(5, 170, 95, 85);//puerco/carnitas
   
@@ -880,7 +558,7 @@ void pantalla_partida_rapida()//7
   
   rect(710, 366, 70, 80);//aguacate
   
-  rect(695, 460, 100, 75);//salsas*/
+  rect(695, 460, 100, 75);//salsas
 
   Taco [] ordenes = new Taco[5];//creamos las ordenes de tacos
 

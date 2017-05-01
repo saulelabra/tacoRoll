@@ -864,7 +864,7 @@ void pantalla_partida_rapida()//7
     }
   }
   
-  /*stroke(255,0,0);
+  stroke(255,0,0);
   
   rect(5, 170, 95, 85);//puerco/carnitas
   
@@ -880,7 +880,7 @@ void pantalla_partida_rapida()//7
   
   rect(710, 366, 70, 80);//aguacate
   
-  rect(695, 460, 100, 75);//salsas*/
+  rect(695, 460, 100, 75);//salsas
 
   Taco [] ordenes = new Taco[5];//creamos las ordenes de tacos
 
