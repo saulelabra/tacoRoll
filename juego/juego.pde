@@ -6,6 +6,7 @@ import com.leapmotion.leap.processing.LeapMotion;
 LeapMotion leapMotion;
 
 int num_pantalla, pantalla_ant, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9;
+int ordenActual = 0;
 float x_s, y_s;
 PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
 
@@ -21,6 +22,7 @@ boolean tortillasIn = false;
 boolean verdurasIn = false;
 boolean aguacateIn = false;
 boolean salsaIn = false;
+boolean tacoIn = false;
 
 boolean carnitasA = false;
 boolean bistecA = false;
@@ -30,11 +32,15 @@ boolean tortillasA = false;
 boolean verduraA = false;
 boolean aguacateA = false;
 boolean salsaA = false;
+boolean tacoA = false;
 
 boolean jugando = false;
 
-PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa;
+PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6;
 
+Taco [] ordenes = new Taco[6];//creamos las ordenes de tacos
+Taco entrega = new Taco();
+  
 void setup()
 {
   size (800, 600);
@@ -63,6 +69,48 @@ void setup()
   verdura = loadImage("verdura.png");
   aguacate = loadImage("aguacate_picado.png");
   salsa = loadImage("salsa.png");
+  
+  orden_1 = loadImage("Orden1.png");
+  orden_2 = loadImage("Orden2.png");
+  orden_3 = loadImage("Orden3.png");
+  orden_4 = loadImage("Orden4.png");
+  orden_5 = loadImage("Orden5.png");
+  orden_6 = loadImage("Orden6.png");
+  
+  for (int i=0; i<6; i++)
+  {
+    ordenes[i] = new Taco();
+  }
+  
+  ordenes[0].pastor = true;
+  ordenes[0].verdura = true;
+  ordenes[0].salsas = true;
+  ordenes[0].display = orden_1;
+  
+  ordenes[1].pastor = true;
+  ordenes[1].verdura = true;
+  ordenes[1].aguacate = true;
+  ordenes[1].salsas = true;
+  ordenes[1].display = orden_2;
+  
+  ordenes[2].queso = true;
+  ordenes[2].salsas = true;
+  ordenes[2].display = orden_3;
+  
+  ordenes[3].bistec = true;
+  ordenes[3].aguacate = true;
+  ordenes[3].verdura = true;
+  ordenes[3].salsas = true;
+  ordenes[3].display = orden_4;
+  
+  ordenes[4].carnitas = true;
+  ordenes[4].aguacate = true;
+  ordenes[4].salsas = true;
+  ordenes[4].display = orden_5;
+  
+  ordenes[5].carnitas = true;
+  ordenes[5].verdura = true;
+  ordenes[5].display = orden_6;
 }
 
 void draw()
@@ -130,6 +178,8 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            
             if (centrado == false)
             {  
               imageMode(CENTER);
@@ -168,6 +218,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)//tortilla base
             {
@@ -221,6 +272,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)//tortilla base
             {
@@ -274,6 +326,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)
             {
@@ -327,6 +380,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)
             {
@@ -370,6 +424,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)
             {
@@ -450,6 +505,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)
             {
@@ -530,6 +586,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
             
             if(tortillasIn == true)
             {
@@ -602,6 +659,108 @@ void draw()
               centrado = false;
             }
           }
+          
+          if((tortillasIn == true && x_s > 360 && x_s < 460 && y_s > 320 && y_s < 420) || tacoA == true)//area del taco
+          {
+            tacoA = true;
+            jugando = true;
+            
+            background (255);
+            image(pantsingle, 0, 170, 800, 370);
+            image(menu_sup_unJugador, 0, 0);
+            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            
+            imageMode(CENTER);
+            
+            if(centrado == false)
+            {
+              image(tortillas, x_s, y_s, 100, 100);
+            
+              if(carnitasIn == true)
+              {
+                image(carnitas, x_s, y_s, 80, 80);
+              }else{
+                if(bistecIn == true)
+                {
+                  image(carneBistec, x_s, y_s, 80, 80);
+                }else{
+                  if(pastorIn == true)
+                  {
+                    image(carnePastor, x_s, y_s, 80, 80);
+                  }else{
+                    if(quesoIn == true)
+                    {
+                      image(queso, x_s, y_s, 80, 80);
+                    }
+                  }
+                }
+              }
+              
+              if(aguacateIn == true)
+              {
+                image(aguacate, x_s, y_s, 60, 60);
+              }
+              
+              if(verdurasIn == true)
+              {
+                image(verdura, x_s, y_s, 60, 60);
+              }
+              
+              if(salsaIn == true)
+              {
+                image(salsa, x_s, y_s, 60, 60);
+              }
+            }
+            
+            if(x_s > 320 && x_s < 510 && y_s > 490 && y_s < 580)// area de orden
+            {
+              centrado = true;
+              tacoIn = true;
+              
+              image(tortillas, 410, 540, 100, 100);
+            
+              if(carnitasIn == true)
+              {
+                image(carnitas, 410, 540, 80, 80);
+              }else{
+                if(bistecIn == true)
+                {
+                  image(carneBistec, 410, 540, 80, 80);
+                }else{
+                  if(pastorIn == true)
+                  {
+                    image(carnePastor, 410, 540, 80, 80);
+                  }else{
+                    if(quesoIn == true)
+                    {
+                      image(queso, 410, 540, 80, 80);
+                    }
+                  }
+                }
+              }
+              
+              if(verdurasIn == true)
+              {
+                image(verdura, 410, 540, 60, 60);
+              }
+              
+              if(aguacateIn == true)
+              {
+                image(aguacate, 410, 540, 60, 60);
+              }
+              
+              if(salsaIn == true)
+              {
+                image(salsa, 410, 540, 60, 60);
+              }
+            }else{
+              centrado = false;
+              tacoIn = false;
+            }
+            
+            imageMode(CORNER);
+          }
+          
         }
 
         break;
@@ -616,15 +775,10 @@ void draw()
       verduraA = false;
       aguacateA = false;
       salsaA = false;
+      tacoA = false;
       
       centrado = false;
       
-      if(tortillasIn == true)
-      {
-        imageMode(CENTER);
-        image(tortillas, 410, 365, 100, 100);
-        imageMode(CORNER);
-      }
     }
   }
 
@@ -784,6 +938,7 @@ void pantalla_partida_rapida()//7
     background(255, 255, 255);
     image(pantsingle, 0, 170, 800, 370);
     image(menu_sup_unJugador, 0, 0);
+    image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
     
     if(tortillasIn == true)
     {
@@ -864,6 +1019,18 @@ void pantalla_partida_rapida()//7
     }
   }
   
+  //Aquí se transfieren los datos de los booleandos del main a los atributos del objeto
+  
+  entrega.carnitas = carnitasIn;
+  entrega.bistec = bistecIn;
+  entrega.pastor = pastorIn;
+  entrega.queso = quesoIn;
+  entrega.verdura = verdurasIn;
+  entrega.aguacate = aguacateIn;
+  entrega.salsas = salsaIn;
+  
+  
+  
   /*stroke(255,0,0);
   
   rect(5, 170, 95, 85);//puerco/carnitas
@@ -882,26 +1049,6 @@ void pantalla_partida_rapida()//7
   
   rect(695, 460, 100, 75);//salsas*/
 
-  Taco [] ordenes = new Taco[5];//creamos las ordenes de tacos
-
-  for (int i=0; i<5; i++)
-  {
-    ordenes[i] = new Taco();
-  }
-
-  ordenes[0].pastor = true;
-  ordenes[0].carnitas = true;
-
-  ordenes[1].carnitas = true;
-
-  ordenes[2].queso = true;
-
-  Taco entrega = new Taco();
-  
-  if(pastorIn == true)
-  {
-    entrega.pastor = true;
-  }
 }
 
 void pantalla_multijugador()//8

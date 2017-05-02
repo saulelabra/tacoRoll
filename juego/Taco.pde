@@ -1,10 +1,12 @@
 class Taco
 {
- boolean pastor, suadero, queso, carnitas, verdura, aguacate, salsa, tortilla;
+ boolean carnitas, bistec, pastor, queso, verdura, aguacate, salsas, tortilla;
+ 
+ PImage display;
  
  Taco()
  {
-   pastor=suadero=queso=carnitas=verdura=aguacate=salsa=false;
+   pastor=bistec=queso=carnitas=verdura=aguacate=salsas=false;
    tortilla = true;
  }
 }
