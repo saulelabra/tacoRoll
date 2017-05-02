@@ -6,7 +6,9 @@ import com.leapmotion.leap.processing.LeapMotion;
 LeapMotion leapMotion;
 
 int num_pantalla, pantalla_ant, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9;
+int numOrdenes = 6;
 int ordenActual = 0;
+int puntos = 0;
 float x_s, y_s;
 PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
 
@@ -38,7 +40,7 @@ boolean jugando = false;
 
 PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6;
 
-Taco [] ordenes = new Taco[6];//creamos las ordenes de tacos
+Taco [] ordenes = new Taco[numOrdenes];//creamos las ordenes de tacos
 Taco entrega = new Taco();
   
 void setup()
@@ -77,7 +79,7 @@ void setup()
   orden_5 = loadImage("Orden5.png");
   orden_6 = loadImage("Orden6.png");
   
-  for (int i=0; i<6; i++)
+  for (int i=0; i<numOrdenes; i++)
   {
     ordenes[i] = new Taco();
   }
@@ -178,7 +180,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if (centrado == false)
             {  
@@ -218,7 +223,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)//tortilla base
             {
@@ -272,7 +280,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)//tortilla base
             {
@@ -326,7 +337,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)
             {
@@ -380,7 +394,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)
             {
@@ -424,7 +441,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)
             {
@@ -505,7 +525,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)
             {
@@ -586,7 +609,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             if(tortillasIn == true)
             {
@@ -668,7 +694,10 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
-            image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            if(ordenActual < numOrdenes)
+            {
+              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+            }
             
             imageMode(CENTER);
             
@@ -938,83 +967,89 @@ void pantalla_partida_rapida()//7
     background(255, 255, 255);
     image(pantsingle, 0, 170, 800, 370);
     image(menu_sup_unJugador, 0, 0);
-    image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
-    
-    if(tortillasIn == true)
+    if(ordenActual < numOrdenes)
     {
-      imageMode(CENTER);
-      image(tortillas, 410, 365, 100, 100);
-      imageMode(CORNER);
+      image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
     }
     
-    if(carnitasIn == true)
+    if(tacoIn == false)
     {
-      imageMode(CENTER);
-      image(carnitas, 410, 365, 80, 80);
-      imageMode(CORNER);
-    }
-    
-    if(bistecIn == true)
-    {
-      imageMode(CENTER);
-      image(carneBistec, 410, 365, 80, 80);
-      imageMode(CORNER);
-    }
-    
-    if(pastorIn == true)
-    {
-      imageMode(CENTER);
-      image(carnePastor, 410, 365, 80, 80);
-      imageMode(CORNER);
-    }
-    
-    if(quesoIn == true)
-    {
-      imageMode(CENTER);
-      image(queso, 410, 365, 80, 80);
-      imageMode(CORNER);
-    }
-    
-    if(verdurasIn == true)
-    {
-      if(carne == true)
+      if(tortillasIn == true)
       {
-        if(aguacateIn == true)
+        imageMode(CENTER);
+        image(tortillas, 410, 365, 100, 100);
+        imageMode(CORNER);
+      }
+      
+      if(carnitasIn == true)
+      {
+        imageMode(CENTER);
+        image(carnitas, 410, 365, 80, 80);
+        imageMode(CORNER);
+      }
+      
+      if(bistecIn == true)
+      {
+        imageMode(CENTER);
+        image(carneBistec, 410, 365, 80, 80);
+        imageMode(CORNER);
+      }
+      
+      if(pastorIn == true)
+      {
+        imageMode(CENTER);
+        image(carnePastor, 410, 365, 80, 80);
+        imageMode(CORNER);
+      }
+      
+      if(quesoIn == true)
+      {
+        imageMode(CENTER);
+        image(queso, 410, 365, 80, 80);
+        imageMode(CORNER);
+      }
+      
+      if(verdurasIn == true)
+      {
+        if(carne == true)
+        {
+          if(aguacateIn == true)
+          {
+            imageMode(CENTER);
+            image(aguacate, 410, 365, 60, 60);
+            imageMode(CORNER);
+          }
+          
+          imageMode(CENTER);
+          image(verdura, 410, 365, 60, 60);
+          imageMode(CORNER);
+        }else{
+          verdurasIn = false;
+        }
+      }
+      
+      if(aguacateIn == true && verdurasIn == false)
+      {
+        if(carne == true)
         {
           imageMode(CENTER);
           image(aguacate, 410, 365, 60, 60);
           imageMode(CORNER);
+        }else{
+          aguacateIn = false;
         }
-        
-        imageMode(CENTER);
-        image(verdura, 410, 365, 60, 60);
-        imageMode(CORNER);
-      }else{
-        verdurasIn = false;
       }
-    }
-    
-    if(aguacateIn == true && verdurasIn == false)
-    {
-      if(carne == true)
+      
+      if(salsaIn == true)
       {
-        imageMode(CENTER);
-        image(aguacate, 410, 365, 60, 60);
-        imageMode(CORNER);
-      }else{
-        aguacateIn = false;
-      }
-    }
-    
-    if(salsaIn == true)
-    {
-      if(carne == true)
-      {
-        imageMode(CENTER);
-        image(salsa, 410, 365, 60, 60);
-        imageMode(CORNER);
-      }else{
-        salsaIn = false;
+        if(carne == true)
+        {
+          imageMode(CENTER);
+          image(salsa, 410, 365, 60, 60);
+          imageMode(CORNER);
+        }else{
+          salsaIn = false;
+        }
       }
     }
   }
@@ -1029,7 +1064,45 @@ void pantalla_partida_rapida()//7
   entrega.aguacate = aguacateIn;
   entrega.salsas = salsaIn;
   
-  
+  if(tacoIn == true && tacoA == false)
+  {
+    /*println("Entró");
+    println("Entrega, tortilla " + entrega.tortilla);
+    println("Entrega, carnitas " + entrega.carnitas);
+    println("Entrega, bistec " + entrega.bistec);
+    println("Entrega, pastor " + entrega.pastor);
+    println("Entrega, queso " + entrega.queso);
+    println("Entrega, verdura " + entrega.verdura);
+    println("Entrega, aguacate " + entrega.aguacate);
+    println("Entrega, salsas " + entrega.salsas);
+    
+    println("Orden actual, tortilla " + ordenes[ordenActual].tortilla);
+    println("Orden actual, carnitas " + ordenes[ordenActual].carnitas);
+    println("Orden actual, bistec " + ordenes[ordenActual].bistec);
+    println("Orden actual, pastor " + ordenes[ordenActual].pastor);
+    println("Orden actual, queso " + ordenes[ordenActual].queso);
+    println("Orden actual, verdura " + ordenes[ordenActual].verdura);
+    println("Orden actual, aguacate " + ordenes[ordenActual].aguacate);
+    println("Orden actual, salsas " + ordenes[ordenActual].salsas);*/
+    
+    if(ordenes[ordenActual].equalsTaco(entrega) && ordenActual < 6)
+    {
+      puntos++;
+      ordenActual++;
+      
+      println("La orden y la entrega son iguales");
+    }
+    
+    carnitasIn = false;
+    bistecIn = false;
+    pastorIn = false;
+    quesoIn = false;
+    tortillasIn = false;
+    verdurasIn = false;
+    aguacateIn = false;
+    salsaIn = false;
+    tacoIn = false;
+  }
   
   /*stroke(255,0,0);
   
