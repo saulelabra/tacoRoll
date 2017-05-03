@@ -13,6 +13,7 @@ float x_s, y_s;
 PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
 
 boolean centrado = false;
+boolean centradoOrden = false;
 
 boolean carne = false;
 
@@ -135,6 +136,7 @@ void draw()
       float y=pos.getY();
       x_s = leapMotion.leapToSketchX(x);
       y_s = leapMotion.leapToSketchY(y);
+      
       if (hand.grabStrength() > 0.7)
       {
         if (x_s>250 && x_s<305 && y_s>35 && y_s<95)
@@ -701,7 +703,7 @@ void draw()
             
             imageMode(CENTER);
             
-            if(centrado == false)
+            if(centradoOrden == false)
             {
               image(tortillas, x_s, y_s, 100, 100);
             
@@ -743,7 +745,7 @@ void draw()
             
             if(x_s > 320 && x_s < 510 && y_s > 490 && y_s < 580)// area de orden
             {
-              centrado = true;
+              centradoOrden = true;
               tacoIn = true;
               
               image(tortillas, 410, 540, 100, 100);
@@ -783,7 +785,7 @@ void draw()
                 image(salsa, 410, 540, 60, 60);
               }
             }else{
-              centrado = false;
+              centradoOrden = false;
               tacoIn = false;
             }
             
