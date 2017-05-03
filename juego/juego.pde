@@ -1138,7 +1138,7 @@ void pantalla_partida_rapida()//7
     println("Orden actual, aguacate " + ordenes[ordenActual].aguacate);
     println("Orden actual, salsas " + ordenes[ordenActual].salsas);*/
     
-    if(ordenes[ordenActual].equalsTaco(entrega) && ordenActual < 6)
+    if(ordenes[ordenActual].equalsTaco(entrega) && ordenActual < numOrdenes)
     {
       puntos++;
       ordenActual++;
