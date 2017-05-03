@@ -6,9 +6,11 @@ import com.leapmotion.leap.processing.LeapMotion;
 LeapMotion leapMotion;
 
 int num_pantalla, pantalla_ant, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9;
-int numOrdenes = 6;
+int numOrdenes = 11;
 int ordenActual = 0;
 int puntos = 0;
+int t_inicio, tiempo;
+boolean timer=false;
 float x_s, y_s;
 PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
 
@@ -39,7 +41,7 @@ boolean tacoA = false;
 
 boolean jugando = false;
 
-PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6;
+PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6, orden_7, orden_8, orden_9, orden_10, orden_11;
 
 Taco [] ordenes = new Taco[numOrdenes];//creamos las ordenes de tacos
 Taco entrega = new Taco();
@@ -79,6 +81,11 @@ void setup()
   orden_4 = loadImage("Orden4.png");
   orden_5 = loadImage("Orden5.png");
   orden_6 = loadImage("Orden6.png");
+  orden_7 = loadImage("Orden7.PNG");
+  orden_8 = loadImage("Orden8.PNG");
+  orden_9 = loadImage("Orden9.PNG");
+  orden_10 = loadImage("Orden10.PNG");
+  orden_11 = loadImage("Orden11.PNG");
   
   for (int i=0; i<numOrdenes; i++)
   {
@@ -114,6 +121,28 @@ void setup()
   ordenes[5].carnitas = true;
   ordenes[5].verdura = true;
   ordenes[5].display = orden_6;
+  
+  ordenes[6].queso = true;
+  ordenes[6].verdura = true;
+  ordenes[6].salsas = true;
+  ordenes[6].display = orden_7;
+  
+  ordenes[7].bistec = true;
+  ordenes[7].verdura = true;
+  ordenes[7].salsas = true;
+  ordenes[7].display = orden_8;
+  
+  ordenes[8].carnitas = true;
+  ordenes[8].aguacate = true; 
+  ordenes[8].salsas = true;
+  ordenes[8].display = orden_9;
+  
+  ordenes[9].pastor = true;
+  ordenes[9].display = orden_10;
+  
+  ordenes[10].bistec = true;
+  ordenes[10].display = orden_11;
+  
 }
 
 void draw()
@@ -136,6 +165,18 @@ void draw()
       float y=pos.getY();
       x_s = leapMotion.leapToSketchX(x);
       y_s = leapMotion.leapToSketchY(y);
+      
+      if (num_pantalla == 7)
+      {
+          int actual = millis() /1000;
+          if (actual < 120)
+          printtime(actual);
+          else
+          {
+            actual = 0;
+            num_pantalla = 6;
+          }
+      }
       
       if (hand.grabStrength() > 0.7)
       {
@@ -162,7 +203,7 @@ void draw()
           
           
         if(num_pantalla == 7)
-        { 
+        {          
           if (x_s > 690 && x_s < 790 && y_s > 190 && y_s < 255 || tortillasA == true)//area de tortilla
           {
             if (tortillasIn == true)
@@ -886,9 +927,9 @@ void draw()
   case 5:
     pantalla_instrucciones();
     break;
-    /*case 6:
-     pantalla_menu_jugar();
-     break;*/
+    case 6:
+     pantalla_menu();
+     break;
   case 7:
     pantalla_partida_rapida();
     break;
@@ -960,9 +1001,19 @@ void pantalla_instrucciones()//5
   image(menu_sup_inst, 0, 0);
 }
 
+void pantalla_menu2()//6
+{
+  background(#FFE203);
+  image(menu, 0, 0, 800, 600);
+  image(menu_sup_menu, 0, 0);
+  println(ordenActual);
+}
+
 void pantalla_partida_rapida()//7
 {
   pantalla_ant = 7;
+  t_inicio = millis();
+  timer = true;
 
   if(jugando == false)
   {
@@ -1092,7 +1143,7 @@ void pantalla_partida_rapida()//7
       puntos++;
       ordenActual++;
       
-      println("La orden y la entrega son iguales");
+      //println("La orden y la entrega son iguales");
     }
     
     carnitasIn = false;
@@ -1190,4 +1241,9 @@ void keyPressed() {
     if (key == '9')
       flag9 = 1;
   }
+}
+
+void printtime(int countdown)
+{
+   println(countdown);
 }
