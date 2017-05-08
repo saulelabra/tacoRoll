@@ -9,7 +9,7 @@ int num_pantalla, pantalla_ant, flag1, flag2, flag3, flag4, flag5, flag6, flag7,
 int numOrdenes = 11;
 int ordenActual = 0;
 int puntos = 0;
-int t_inicio, tiempo;
+int t_inicio = millis(), tjuego, actual;
 boolean timer=false;
 float x_s, y_s;
 PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
@@ -50,7 +50,7 @@ void setup()
 {
   size (800, 600);
   leapMotion = new LeapMotion(this);
-  num_pantalla = 7;
+  num_pantalla = 1;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -142,11 +142,27 @@ void setup()
   
   ordenes[10].bistec = true;
   ordenes[10].display = orden_11;
-  
+ 
 }
 
 void draw()
 { 
+  t_inicio = millis()/1000;
+  println("Actual: " + actual + "    " + t_inicio);
+  if (num_pantalla == 7)
+  {
+    actual = (t_inicio) - (actual/1000); 
+    tjuego = actual;
+    
+    if (actual < 20)
+    printtime(actual);
+    else
+    {
+      num_pantalla = 6;
+      t_inicio = 0;
+      actual = 0;
+    }
+  }
   Controller controller = leapMotion.controller();
   controller.enableGesture(Gesture.Type.TYPE_SCREEN_TAP);
 
@@ -165,18 +181,6 @@ void draw()
       float y=pos.getY();
       x_s = leapMotion.leapToSketchX(x);
       y_s = leapMotion.leapToSketchY(y);
-      
-      if (num_pantalla == 7)
-      {
-          int actual = millis() /1000;
-          if (actual < 120)
-          printtime(actual);
-          else
-          {
-            actual = 0;
-            num_pantalla = 6;
-          }
-      }
       
       if (hand.grabStrength() > 0.7)
       {
@@ -204,6 +208,8 @@ void draw()
           
         if(num_pantalla == 7)
         {          
+          textSize(30);
+          text(puntos, 0, 0);
           if (x_s > 690 && x_s < 790 && y_s > 190 && y_s < 255 || tortillasA == true)//area de tortilla
           {
             if (tortillasIn == true)
@@ -223,6 +229,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+
             if(ordenActual < numOrdenes)
             {
               image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
@@ -737,6 +744,7 @@ void draw()
             background (255);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
+
             if(ordenActual < numOrdenes)
             {
               image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
@@ -1007,6 +1015,7 @@ void pantalla_menu2()//6
   image(menu, 0, 0, 800, 600);
   image(menu_sup_menu, 0, 0);
   println(ordenActual);
+  t_inicio=0;
 }
 
 void pantalla_partida_rapida()//7
@@ -1145,7 +1154,8 @@ void pantalla_partida_rapida()//7
       
       //println("La orden y la entrega son iguales");
     }
-    
+    println("puntos" + puntos);
+
     carnitasIn = false;
     bistecIn = false;
     pastorIn = false;
@@ -1157,6 +1167,16 @@ void pantalla_partida_rapida()//7
     tacoIn = false;
   }
   
+  fill(255,255,255);
+  stroke(255);
+  rect(400, 150, 150, 100);
+  
+  printtime(tjuego);
+  
+  fill(#7D837D);
+  textSize(20);
+  text("Puntos:", 20, 580);
+  text(puntos, 100, 580);
   /*stroke(255,0,0);
   
   rect(5, 170, 95, 85);//puerco/carnitas
@@ -1244,6 +1264,10 @@ void keyPressed() {
 }
 
 void printtime(int countdown)
-{
-   println(countdown);
+{  
+  fill(#7D837D);
+  textSize(100);
+  text(countdown, 400, 240);
+   
+  println("HOla"+countdown);
 }
