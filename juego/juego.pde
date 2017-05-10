@@ -9,7 +9,7 @@ int num_pantalla, pantalla_ant, flag1, flag2, flag3, flag4, flag5, flag6, flag7,
 int numOrdenes = 11;
 int ordenActual = 0;
 int puntos = 0;
-int t_inicio = millis(), tjuego, actual;
+int t_inicio, tjuego, actual;
 boolean timer=false;
 float x_s, y_s;
 PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
@@ -40,6 +40,7 @@ boolean salsaA = false;
 boolean tacoA = false;
 
 boolean jugando = false;
+boolean inittimer = true;
 
 PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6, orden_7, orden_8, orden_9, orden_10, orden_11;
 
@@ -147,20 +148,26 @@ void setup()
 
 void draw()
 { 
-  t_inicio = millis()/1000;
-  println("Actual: " + actual + "    " + t_inicio);
+  
+ 
   if (num_pantalla == 7)
   {
-    actual = (t_inicio) - (actual/1000); 
-    tjuego = actual;
-    
-    if (actual < 20)
-    printtime(actual);
+    if(inittimer)
+    {
+      t_inicio = millis();
+      inittimer=false;
+    }
+    actual = millis(); 
+    println("Actual: " + actual + "    " + t_inicio);
+    tjuego = (int)((float)(actual-t_inicio)/1000);
+    println("WWWW "+tjuego);
+    if (tjuego < 20)
+      printtime(tjuego);
     else
     {
+      println("Ya entro");
       num_pantalla = 6;
-      t_inicio = 0;
-      actual = 0;
+      inittimer = true;
     }
   }
   Controller controller = leapMotion.controller();
@@ -1015,13 +1022,12 @@ void pantalla_menu2()//6
   image(menu, 0, 0, 800, 600);
   image(menu_sup_menu, 0, 0);
   println(ordenActual);
-  t_inicio=0;
+ 
 }
 
 void pantalla_partida_rapida()//7
 {
   pantalla_ant = 7;
-  t_inicio = millis();
   timer = true;
 
   if(jugando == false)
