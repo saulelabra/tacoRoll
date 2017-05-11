@@ -13,7 +13,7 @@ int puntos = 0;
 int t_inicio, tjuego, actual;
 boolean timer=false;
 float x_s, y_s;
-PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check;
+PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check, fondo, hOpen;
 
 boolean centrado = false;
 boolean centradoOrden = false;
@@ -43,7 +43,7 @@ boolean tacoA = false;
 boolean jugando = false;
 boolean inittimer = true;
 
-PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6, orden_7, orden_8, orden_9, orden_10, orden_11;
+PImage carnePastor, tortillas, carnitas, carneBistec, queso, verdura, aguacate, salsa, orden_1, orden_2, orden_3, orden_4, orden_5, orden_6, orden_7, orden_8, orden_9, orden_10, orden_11, parchetemp, GameOver;
 
 Taco [] ordenes = new Taco[numOrdenes];//creamos las ordenes de tacos
 Taco entrega = new Taco();
@@ -52,7 +52,7 @@ void setup()
 {
   size (800, 600);
   leapMotion = new LeapMotion(this);
-  num_pantalla = 1;
+  num_pantalla = 2;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -67,6 +67,10 @@ void setup()
   pantmult = loadImage("pantmult.png");
   pantinst = loadImage("pantinst.jpg");
   check = loadImage("check.png");
+  fondo = loadImage("fondo_color.jpg");
+  parchetemp = loadImage("ParcheTemp.PNG");
+  hOpen = loadImage("hand_open.png");
+  GameOver = loadImage("GAMEOVER.jpg");
 
   carnePastor = loadImage("pastor.png");
   tortillas = loadImage("tortilla.png");
@@ -162,12 +166,12 @@ void draw()
     println("Actual: " + actual + "    " + t_inicio);
     tjuego = (int)((float)(actual-t_inicio)/1000);
     println("WWWW "+tjuego);
-    if (tjuego < 20)
+    if (tjuego < 10)
       printtime(tjuego);
     else
     {
       println("Ya entro");
-      if(tjuego >= 20 || ordenActual >= numOrdenes)
+      if(tjuego >= 10 || ordenActual >= numOrdenes)
       {
         num_pantalla = 9;
         inittimer = true;
@@ -201,20 +205,20 @@ void draw()
         if (x_s>705 && x_s<770 && y_s>35 && y_s<95)
           exit();
 
-        if (x_s>600 && x_s<665 && y_s>35 && y_s<95)
-          num_pantalla = 4;//Carga ajustes
+        /*if (x_s>600 && x_s<665 && y_s>35 && y_s<95)
+          num_pantalla = 4;//Carga ajustes*/
 
         if (x_s>30 && x_s<95 && y_s>35 && y_s<95)
           /*num_pantalla = 4;*/          //Carga pausa            
 
-          if (x_s>140 && x_s<205 && y_s>35 && y_s<95)//botón de regreso
+        if (x_s>140 && x_s<205 && y_s>35 && y_s<95)//botón de regreso
             num_pantalla = pantalla_ant;
 
         if (x_s>490 && x_s<555 && y_s>35 && y_s<95)//botón instrucciones
           num_pantalla = 5;
 
-        if (x_s>375 && x_s<440 && y_s>35 && y_s<95) //botón multijugador
-          num_pantalla = 8;
+        /*if (x_s>375 && x_s<440 && y_s>35 && y_s<95) //botón multijugador
+          num_pantalla = 8;*/
           
           
         if(num_pantalla == 7)
@@ -237,7 +241,7 @@ void draw()
             
             jugando = true;
             tortillasA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
 
@@ -281,7 +285,7 @@ void draw()
             
             jugando = true;
             carnitasA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -338,7 +342,7 @@ void draw()
             
             jugando = true;
             bistecA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -395,7 +399,7 @@ void draw()
             
             jugando = true;
             pastorA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -452,7 +456,7 @@ void draw()
             
             jugando = true;
             quesoA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -499,7 +503,7 @@ void draw()
           {
             jugando = true;
             verduraA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -583,7 +587,7 @@ void draw()
           {
             jugando = true;
             aguacateA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -667,7 +671,7 @@ void draw()
           {
             jugando = true;
             salsaA = true;
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
@@ -752,7 +756,7 @@ void draw()
             tacoA = true;
             jugando = true;
             
-            background (255);
+            image(fondo, 0, 0, 800, 600);
             image(pantsingle, 0, 170, 800, 370);
             image(menu_sup_unJugador, 0, 0);
 
@@ -853,7 +857,6 @@ void draw()
           }
           
         }
-
         break;
       }
       
@@ -887,21 +890,21 @@ void draw()
     }
   }
 
-  if (mousePressed && (mouseButton == LEFT))//ajustes
+  /*if (mousePressed && (mouseButton == LEFT))//ajustes
   {
     if (mouseX>600 && mouseX<665 && mouseY>35 && mouseY<95)
     {
       num_pantalla = 4;//carga ajustes
     }
-  }
+  }*/
 
-  if (mousePressed && (mouseButton == LEFT) )//multijugador
+  /*if (mousePressed && (mouseButton == LEFT) )//multijugador
   { 
     if (mouseX>375 && mouseX<440 && mouseY>35 && mouseY<95)
     {
       num_pantalla = 8;//multijugador
     }
-  }
+  }*/
 
   if (mousePressed && (mouseButton == LEFT) )//instrucciones
   { 
@@ -911,13 +914,13 @@ void draw()
     }
   }
 
-  if (mousePressed && (mouseButton == LEFT) )//Define área de botón pausa
+  /*if (mousePressed && (mouseButton == LEFT) )//Define área de botón pausa
   { 
     if (mouseX>30 && mouseX<95 && mouseY>35 && mouseY<95)
     {
-      /*num_pantalla = 4;//carga pausa*/
+      num_pantalla = 4;//carga pausa
     }
-  }
+  }*/
 
   if (mousePressed && (mouseButton == LEFT) )//Define área de botón de regreso
   { 
@@ -959,13 +962,17 @@ void draw()
     pantalla_over();
     break;
   }
-  strokeWeight(10);
+  /*strokeWeight(10);
   stroke(255, 0, 0);
   point(x_s, y_s);
   strokeWeight(1);
   stroke(255, 0, 0);
-  fill(255, 0, 0, 25);
+  fill(255, 0, 0, 25);*/
   //rect(705, 35, 65, 60);
+  
+  imageMode(CENTER);
+  image(hOpen ,x_s, y_s, 30, 30);
+  imageMode(CORNER);
 }
 
 void pantalla_splashscreen()//1
@@ -1040,7 +1047,7 @@ void pantalla_partida_rapida()//7
 
   if(jugando == false)
   {
-    background(255, 255, 255);
+    image(fondo, 0, 0, 800, 600);
     image(pantsingle, 0, 170, 800, 370);
     image(menu_sup_unJugador, 0, 0);
     if(ordenActual < numOrdenes)
@@ -1185,7 +1192,8 @@ void pantalla_partida_rapida()//7
   fill(255,255,255);
   stroke(255);
   rect(400, 150, 150, 100);
-  
+  image(parchetemp,400,150);
+  image(parchetemp,450,150);
   printtime(tjuego);
   
   fill(#7D837D);
@@ -1248,6 +1256,17 @@ void pantalla_over()//8
   fill(0,0,0,200);
   rect(0, 0, 800, 600);
   image(menu_sup_menu, 0, 0);
+  
+  fill(#FFC903);
+  rect(200, 190, 400, 300);
+  
+  fill(#7D837D);
+  textSize(50);
+  text("GAME OVER", 250, 240);
+  
+  fill(#7D837D);
+  textSize(50);
+  text("Puntos: " + puntos, 270, 380);
 }
 
 void keyPressed() {
