@@ -8,6 +8,7 @@ LeapMotion leapMotion;
 int num_pantalla, pantalla_ant, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9;
 int numOrdenes = 11;
 int ordenActual = 0;
+int ordenRandom = (int)random(numOrdenes);
 int puntos = 0;
 int t_inicio, tjuego, actual;
 boolean timer=false;
@@ -64,7 +65,7 @@ void setup()
   modojuego = loadImage("modojuego.png");
   pantsingle = loadImage("pantsingle.png");
   pantmult = loadImage("pantmult.png");
-  pantinst = loadImage("pantinst.png");
+  pantinst = loadImage("pantinst.jpg");
   check = loadImage("check.png");
 
   carnePastor = loadImage("pastor.png");
@@ -166,8 +167,11 @@ void draw()
     else
     {
       println("Ya entro");
-      num_pantalla = 6;
-      inittimer = true;
+      if(tjuego >= 20 || ordenActual >= numOrdenes)
+      {
+        num_pantalla = 9;
+        inittimer = true;
+      }
     }
   }
   Controller controller = leapMotion.controller();
@@ -239,7 +243,7 @@ void draw()
 
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if (centrado == false)
@@ -282,7 +286,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)//tortilla base
@@ -339,7 +343,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)//tortilla base
@@ -396,7 +400,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)
@@ -453,7 +457,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)
@@ -500,7 +504,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)
@@ -584,7 +588,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)
@@ -668,7 +672,7 @@ void draw()
             image(menu_sup_unJugador, 0, 0);
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             if(tortillasIn == true)
@@ -754,7 +758,7 @@ void draw()
 
             if(ordenActual < numOrdenes)
             {
-              image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+              image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
             }
             
             imageMode(CENTER);
@@ -951,6 +955,9 @@ void draw()
   case 8:
     pantalla_multijugador();
     break;
+  case 9:
+    pantalla_over();
+    break;
   }
   strokeWeight(10);
   stroke(255, 0, 0);
@@ -1012,7 +1019,8 @@ void pantalla_ajustes()//4
 
 void pantalla_instrucciones()//5
 {
-  image(pantinst, 0, 0);
+  background(255,255,28);
+  image(pantinst, 0, 10);
   image(menu_sup_inst, 0, 0);
 }
 
@@ -1037,7 +1045,7 @@ void pantalla_partida_rapida()//7
     image(menu_sup_unJugador, 0, 0);
     if(ordenActual < numOrdenes)
     {
-      image(ordenes[ordenActual].display, 320, 490, 190, 90);//se imprimen ordenes
+      image(ordenes[ordenRandom].display, 320, 490, 190, 90);//se imprimen ordenes
     }
     
     if(tacoIn == false)
@@ -1153,10 +1161,11 @@ void pantalla_partida_rapida()//7
     println("Orden actual, aguacate " + ordenes[ordenActual].aguacate);
     println("Orden actual, salsas " + ordenes[ordenActual].salsas);*/
     
-    if(ordenes[ordenActual].equalsTaco(entrega) && ordenActual < numOrdenes)
+    if(ordenes[ordenRandom].equalsTaco(entrega) && ordenActual < numOrdenes)
     {
       puntos++;
       ordenActual++;
+      ordenRandom = (int)random(numOrdenes);
       
       //println("La orden y la entrega son iguales");
     }
@@ -1183,6 +1192,7 @@ void pantalla_partida_rapida()//7
   textSize(20);
   text("Puntos:", 20, 580);
   text(puntos, 100, 580);
+  
   /*stroke(255,0,0);
   
   rect(5, 170, 95, 85);//puerco/carnitas
@@ -1227,6 +1237,17 @@ void pantalla_multijugador()//8
   if (flag9==1)
     image(pantmult, 0, 0);
   image(menu_sup_multijugador, 0, 0);
+}
+
+void pantalla_over()//8
+{
+  ordenActual = 0;
+  background(#FFE203);
+  image(menu, 0, 0, 800, 600);
+  noStroke();
+  fill(0,0,0,200);
+  rect(0, 0, 800, 600);
+  image(menu_sup_menu, 0, 0);
 }
 
 void keyPressed() {
