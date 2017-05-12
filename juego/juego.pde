@@ -13,7 +13,7 @@ int puntos = 0;
 int t_inicio, tjuego, actual;
 boolean timer=false;
 float x_s, y_s;
-PImage splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check, fondo, hOpen;
+PImage TacoIM, splashS, cargando, menu, menu_sup_menu, menu_sup_ajustes, menu_sup_unJugador, menu_sup_multijugador, menu_sup_inst, ajustes, modojuego, pantsingle, pantmult, pantinst, check, fondo, hOpen;
 
 boolean centrado = false;
 boolean centradoOrden = false;
@@ -52,7 +52,7 @@ void setup()
 {
   size (800, 600);
   leapMotion = new LeapMotion(this);
-  num_pantalla = 2;
+  num_pantalla = 1;
   splashS = loadImage("splash.png");
   cargando = loadImage("cargando.png");
   menu = loadImage("menu.png");
@@ -71,6 +71,7 @@ void setup()
   parchetemp = loadImage("ParcheTemp.PNG");
   hOpen = loadImage("hand_open.png");
   GameOver = loadImage("GAMEOVER.jpg");
+  TacoIM = loadImage("Taco.PNG");
 
   carnePastor = loadImage("pastor.png");
   tortillas = loadImage("tortilla.png");
@@ -161,17 +162,18 @@ void draw()
     {
       t_inicio = millis();
       inittimer=false;
+      puntos=0;
     }
     actual = millis(); 
     println("Actual: " + actual + "    " + t_inicio);
     tjuego = (int)((float)(actual-t_inicio)/1000);
     println("WWWW "+tjuego);
-    if (tjuego < 10)
+    if (tjuego < 15)
       printtime(tjuego);
     else
     {
       println("Ya entro");
-      if(tjuego >= 10 || ordenActual >= numOrdenes)
+      if(tjuego >= 15 || ordenActual >= numOrdenes)
       {
         num_pantalla = 9;
         inittimer = true;
@@ -1194,6 +1196,13 @@ void pantalla_partida_rapida()//7
   rect(400, 150, 150, 100);
   image(parchetemp,400,150);
   image(parchetemp,450,150);
+  image(parchetemp,390,150);
+  image(parchetemp,400,155);
+  image(parchetemp,450,155);
+  image(parchetemp,390,155);
+  image(parchetemp,400,143);
+  image(parchetemp,450,143);
+  image(parchetemp,390,143);
   printtime(tjuego);
   
   fill(#7D837D);
@@ -1260,13 +1269,20 @@ void pantalla_over()//8
   fill(#FFC903);
   rect(200, 190, 400, 300);
   
-  fill(#7D837D);
-  textSize(50);
-  text("GAME OVER", 250, 240);
+  fill(#E31010);
+  textSize(60);
+  text("GAME OVER", 233, 270);
   
   fill(#7D837D);
   textSize(50);
-  text("Puntos: " + puntos, 270, 380);
+  text("Puntos: " + puntos, 275, 430);
+  
+  fill(0);
+  noFill();
+  stroke(#A22222);
+  strokeWeight(15);
+  rect(200,190,400,300);
+  image(TacoIM, 370, 300, 70, 70);
 }
 
 void keyPressed() {
