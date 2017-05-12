@@ -168,12 +168,12 @@ void draw()
     println("Actual: " + actual + "    " + t_inicio);
     tjuego = (int)((float)(actual-t_inicio)/1000);
     println("WWWW "+tjuego);
-    if (tjuego < 15)
+    if (tjuego < 60)
       printtime(tjuego);
     else
     {
       println("Ya entro");
-      if(tjuego >= 15 || ordenActual >= numOrdenes)
+      if(tjuego >= 60 || ordenActual >= numOrdenes)
       {
         num_pantalla = 9;
         inittimer = true;
